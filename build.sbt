@@ -14,6 +14,7 @@ lazy val root = (project in file("."))
       "org.http4s" %% "http4s-ember-server" % "0.23.26"
     ),
     smithy4sAwsSpecs ++= Seq(AWS.comprehend),
+    Compile / smithy4sOutputDir := (Compile / sourceDirectory).value / "scala" / "generated" ,
     Compile / run / fork := true,
     Compile / run / connectInput := true
   )
