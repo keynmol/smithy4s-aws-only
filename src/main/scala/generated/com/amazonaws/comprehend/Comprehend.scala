@@ -1439,7 +1439,7 @@ object ComprehendGen extends Service.Mixin[ComprehendGen, ComprehendOperation] {
     type Default[F[+_, +_]] = Constant[smithy4s.kinds.stubs.Kind2[F]#toKind5]
   }
 
-  val endpoints: Vector[smithy4s.Endpoint[ComprehendOperation, _, _, _, _, _]] = Vector(
+  val endpoints: Vector[smithy4s.Endpoint[ComprehendOperation, ?, ?, ?, ?, ?]] = Vector(
     ComprehendOperation.BatchDetectDominantLanguage,
     ComprehendOperation.BatchDetectEntities,
     ComprehendOperation.BatchDetectKeyPhrases,

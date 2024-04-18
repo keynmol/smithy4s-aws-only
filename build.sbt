@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := sys.env.getOrElse("SCALA_VERSION", "2.13.13")
+ThisBuild / scalaVersion := sys.env.getOrElse("SCALA_VERSION", "3.3.3")
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.example"
 ThisBuild / organizationName := "example"
@@ -14,10 +14,11 @@ lazy val root = (project in file("."))
       "org.http4s" %% "http4s-ember-server" % "0.23.26"
     ),
     smithy4sAwsSpecs ++= Seq(AWS.comprehend),
-    Compile / smithy4sOutputDir := (Compile / sourceDirectory).value / "scala" / "generated" ,
+    Compile / smithy4sOutputDir := (Compile / sourceDirectory).value / "scala" / "generated",
     Compile / run / fork := true,
-    Compile / run / connectInput := true
+    /*
+    scalacOptions += "-Vprofile",
+    scalacOptions += "-Vprofile-details:10",
+    scalacOptions += "-Yprofile-enabled",
+    scalacOptions += "-Yprofile-destination:" + ((ThisBuild / baseDirectory).value / "profile.csv").toString */
   )
-
-// The `AWS` object contains a list of references to artifacts that contain specifications to AWS services.
-
