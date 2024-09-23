@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    name: Compile on ${{matrix.scala_version}}
+    name: ${{matrix.os}}, ${{matrix.scala_version}}
     strategy:
       fail-fast: false
       matrix:
