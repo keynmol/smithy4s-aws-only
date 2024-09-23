@@ -30,6 +30,16 @@ jobs:
 
       - uses: coursier/cache-action@v6
 
+
+      - name: Setup
+        run: |
+          PLATFORM="$(uname)"
+          if [ $PLATFORM == "Darwin" ]; then
+            brew install sbt 
+          else
+            echo "It's a Linux"
+          fi
+
       - name: Check formatting
         shell: bash
         run: |
