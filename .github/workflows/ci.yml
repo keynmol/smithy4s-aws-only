@@ -30,7 +30,9 @@ jobs:
       - uses: coursier/cache-action@v6
 
       - name: Check formatting
-        run: sbt -Dsbt.task.timings=true 'clean;compile' 2>&1 | grep "root / Compile / compileIncremental"
+        shell: bash
+        run: |
+          sbt -Dsbt.task.timings=true 'clean;compile' 2>&1 | grep "root / Compile / compileIncremental"
         env:
           SCALA_VERSION: "{{ matrix.scala_version }}"
 
