@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches: ["main"]
+    tags: ["v*"]
+  pull_request:
+    branches: ["*"]
+  workflow_dispatch:
+    inputs:
+      scalaVersion:
+        description: 'Version of Scala to run'  
+        required: false
+        default: '3.5.1'
+        type: string
+
+jobs:
+  build:
+    name: Examples on ${{matrix.scala_version}}
+    strategy:
+      fail-fast: false
+      matrix:
+        scala_version: ["2.13.14", "3.3.3", "3.5.1", "3.6.0-RC1-bin-20240922-22ed2fb-NIGHTLY"]
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: coursier/cache-action@v6
+
+      - name: Check formatting
+        run: sbt -Dsbt.task.timings=true 'clean;compile' 2>&1 | grep "root / Compile / compileIncremental"
+        env:
+          SCALA_VERSION: {{ matrix.scala_version }}
+
