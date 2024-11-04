@@ -10,7 +10,7 @@ on:
       scalaVersion:
         description: 'Version of Scala to run'  
         required: false
-        default: '3.5.1'
+        default: '3.5.2'
         type: string
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scala_version: ["2.13.14", "3.3.3", "3.5.1", "3.6.0-RC1-bin-20240922-22ed2fb-NIGHTLY", "3.6.0-RC1-bin-20240919-ba9e59a-NIGHTLY"]
+        scala_version: ["2.13.14", "3.3.4", "3.5.1", "3.6.2-RC1-bin-20241102-01288d2-NIGHTLY", "3.6.0-RC1-bin-20240919-ba9e59a-NIGHTLY"]
         os: ["ubuntu-latest", "macos-latest"]
 
     runs-on: ${{ matrix.os }}
@@ -29,7 +29,8 @@ jobs:
           fetch-depth: 0
 
       - uses: coursier/cache-action@v6
-
+      
+      - uses: sbt/setup-sbt@v1
 
       - name: Setup
         run: |
